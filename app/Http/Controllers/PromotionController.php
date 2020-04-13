@@ -12,6 +12,7 @@ class PromotionController extends Controller
 
     public function __construct(Request $request, PromotionInterface $promotionInterface)
     {
+        $this->middleware('auth');
         $this->promotionInterface = $promotionInterface;
     }
 

@@ -12,6 +12,7 @@ class BrandController extends Controller
 
     public function __construct(Request $request, BrandInterface $brandInterface)
     {
+        $this->middleware('auth');
         $this->brandInterface = $brandInterface;
     }
 

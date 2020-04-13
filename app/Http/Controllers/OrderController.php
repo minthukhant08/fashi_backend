@@ -14,6 +14,7 @@ class OrderController extends Controller
 
     public function __construct(Request $request, OrderInterface $orderInterface, DeliveryInterface $deliveryInterface)
     {
+        $this->middleware('auth');
         $this->orderInterface = $orderInterface;
         $this->deliveryInterface = $deliveryInterface;
     }

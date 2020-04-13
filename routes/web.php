@@ -10,10 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/signup', 'AuthController@showRegister');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/log_in', 'AuthController@showLogin')->name('log_in');
+
+Route::get('/', 'DashBoardController@index');
 
 Route::group(['prefix' => 'brand'], function()
 {
@@ -75,3 +76,5 @@ Route::group(['prefix' => 'product'], function()
       Route::get('/{id}', 'ProductController@find');
       Route::post('/{id}', 'ProductController@update');
 });
+
+Auth::routes();

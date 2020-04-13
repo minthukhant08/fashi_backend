@@ -15,7 +15,7 @@ class ProductRepository implements ProductInterface
   }
 
   public function getAll(){
-    return $this->product::whereNull('deleted_at')->orderBy('created_at','desc')->paginate(5);
+    return $this->product::with('brand', 'category', 'type', 'promotion')->whereNull('deleted_at')->orderBy('created_at','desc')->paginate(5);
   }
 
   public function restock(){

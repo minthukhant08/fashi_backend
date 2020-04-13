@@ -7,6 +7,7 @@ use App\Repositories\Product\ProductRepositoryInterface as ProductInterface;
 use App\Repositories\Category\CategoryRepository as CategoryInterface;
 use App\Repositories\Promotion\PromotionRepository as PromotionInterface;
 use App\Repositories\Brand\BrandRepository as BrandInterface;
+use App\Repositories\Type\TypeRepository as TypeInterface;
 use App\Repositories\Supplier\SupplierRepository as SupplierInterface;
 use Validator;
 
@@ -17,31 +18,38 @@ class ProductController extends Controller
     public $brandInterface;
     public $promotionInterface;
     public $supplierInterface;
+    public $typeInterface;
 
     public function __construct(Request $request,
     ProductInterface $productInterface,
     CategoryInterface $categoryInterface,
     BrandInterface $brandInterface,
     PromotionInterface $promotionInterface,
-    SupplierInterface $supplierInterface
+    SupplierInterface $supplierInterface,
+    TypeInterface $typeInterface
     )
     {
+        $this->middleware('auth');
         $this->productInterface = $productInterface;
         $this->categoryInterface = $categoryInterface;
         $this->brandInterface = $brandInterface;
         $this->promotionInterface = $promotionInterface;
         $this->supplierInterface = $supplierInterface;
+        $this->typeInterface = $typeInterface;
     }
 
     public function index(Request $request)
     {
+
       $products = $this->productInterface->getAll();
       $categories = $this->categoryInterface->getAll();
       $promotions = $this->promotionInterface->getAll();
+      $types = $this->typeInterface->getAll();
       $brands = $this->brandInterface->getAll();
       return view('setups.product.index')->with('products', $products)
                                          ->with('categories', $categories)
                                          ->with('brands', $brands)
+                                         ->with('types', $types)
                                          ->with('promotions', $promotions);
     }
 
@@ -72,6 +80,7 @@ class ProductController extends Controller
             'price'         =>  'required',
             'quantity'      =>  'required',
             'brand'      =>  'required',
+            'type'      =>  'required',
         ]);
 
       if ($validator->fails()) {
@@ -91,6 +100,7 @@ class ProductController extends Controller
      $product['brand_id'] = $request->brand;
      $product['price'] = $request->price;
      $product['quantity'] = $request->quantity;
+     $product['type_id'] = $request->type;
      $image= $request->file('img');
      $imagePath = public_path('/images/products/');
      $image->move($imagePath, $request->name. '.' . $image->getClientOriginalExtension());
@@ -123,10 +133,11 @@ class ProductController extends Controller
             'price'         =>  'required',
             'quantity'      =>  'required',
             'brand'      =>  'required',
+            'type'      =>  'required',
         ]);
 
       if ($validator->fails()) {
-        return response('Validation Failed', 400)
+        return response($validator->errors(), 400)
                     ->header('Content-Type', 'application/json');
       }
 
@@ -142,6 +153,7 @@ class ProductController extends Controller
      $product['brand_id'] = $request->brand;
      $product['price'] = $request->price;
      $product['quantity'] = $request->quantity;
+     $product['type_id'] = $request->type;
      if ($request->file('img')!=null) {
        $image= $request->file('img');
        $imagePath = public_path('/images/products/');

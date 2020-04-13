@@ -17,6 +17,7 @@
               <th>Name</th>
               <th>Brand</th>
               <th>Category</th>
+              <th>Type</th>
               <th>Size</th>
               <th>Price</th>
               <th>Quantity</th>
@@ -32,6 +33,7 @@
                   <td >{{$product->name}}</td>
                   <td >{{$product->brand->name}}</td>
                   <td >{{$product->category->name}}</td>
+                  <td >{{$product->type->name}}</td>
                   <td >{{$product->size}}</td>
                   <td >{{$product->price}}</td>
                   <td >{{$product->quantity}}</td>
@@ -115,6 +117,14 @@
                         <option selected value="">Select Category</option>
                         @foreach ($categories as $category)
                           <option value="{{$category->id}}">{{$category->name}}</option>
+                        @endforeach
+                      </select>
+                   </div>
+                   <div class="form-group">
+                     <select class="form-control" id="type" name="category">
+                        <option selected value="">Select Type</option>
+                        @foreach ($types as $type)
+                          <option value="{{$type->id}}">{{$type->name}}</option>
                         @endforeach
                       </select>
                    </div>
@@ -203,6 +213,14 @@
                       </select>
                    </div>
                    <div class="form-group">
+                     <select class="form-control" id="update_type" name="update_type">
+                        <option selected value="">Select Type</option>
+                        @foreach ($types as $type)
+                          <option value="{{$type->id}}">{{$type->name}}</option>
+                        @endforeach
+                      </select>
+                   </div>
+                   <div class="form-group">
                      <select class="form-control" id="update_promotion" name="update_promotion">
                         <option selected value="">Select Promotion</option>
                         @foreach ($promotions as $promotion)
@@ -259,6 +277,7 @@
       form.append('category', $('#category').val());
       form.append('promotion', $('#promotion').val());
       form.append('brand', $('#brand').val());
+      form.append('type', $('#type').val());
       $.ajax({
     		url : '/product',
     		type: 'post',
@@ -351,6 +370,7 @@
       form.append('promotion', $('#update_promotion').val());
       form.append('brand', $('#update_brand').val());
       console.log($('#update_name').val());
+      form.append('type', $('#update_type').val());
       $.ajax({
     		url : '/product/' + id,
     		type: 'post',
@@ -441,6 +461,8 @@
     $('#update_promotion').val(obj.promotion_id);
     $('#update_brand').val(obj.brand_id);
     $('#update_price').val(obj.price);
+    $('#update_type').val(obj.type.id);
+    console.log(obj.type);
     $('#update_description').val(obj.description);
     $('#image_update_preview').attr('src', window.location.origin + obj.image);
   }

@@ -8,7 +8,7 @@ class Product extends Model
 {
   protected $table = 'product';
   protected $fillable = [
-      'name', 'price', 'quantity', 'image', 'category_id', 'promotion_id', 'size', 'description', 'brand_id'
+      'name', 'price', 'quantity', 'image', 'category_id', 'promotion_id', 'size', 'description', 'brand_id', 'type_id'
   ];
   protected $hidden = [
       'deleted_at', 'created_at', 'updated_at'
@@ -27,6 +27,11 @@ class Product extends Model
   public function brand()
   {
     return $this->belongsTo(Brand::class);
+  }
+
+  public function type()
+  {
+    return $this->belongsTo(Type::class);
   }
 
 }

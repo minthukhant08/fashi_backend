@@ -22,6 +22,7 @@ class CreateProductTable extends Migration
             $table->integer('price');
             $table->unsignedInteger('category_id');
             $table->unsignedInteger('brand_id');
+            $table->unsignedInteger('type_id');
             $table->unsignedInteger('promotion_id')->nullable();
             $table->string('description');
             $table->timestamps();

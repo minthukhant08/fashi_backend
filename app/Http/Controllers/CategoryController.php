@@ -12,6 +12,7 @@ class CategoryController extends Controller
 
     public function __construct(Request $request, CategoryInterface $categoryInterface)
     {
+        $this->middleware('auth');
         $this->categoryInterface = $categoryInterface;
     }
 

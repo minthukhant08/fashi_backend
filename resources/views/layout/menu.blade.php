@@ -31,7 +31,7 @@
     <li class="nav-item">
       <div class="user-panel pb-3 d-flex">
         <div class="info">
-          <a href="#" class="d-block">{{ Auth::user() }}</a>
+          <a href="#" class="d-block" style="color:white">{{ Auth::user()->name }}</a>
         </div>
         <div class="image">
           <img src="{{url('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
@@ -80,62 +80,56 @@
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="/brand" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="ion ion-ios-glasses-outline"></i>
                 <p>Brand</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="/type" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="ion ion-ios-albums"></i>
                 <p>Type</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="/category" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="ion ion-ios-list"></i>
                 <p>Category</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="/product" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="ion ion-bag"></i>
                 <p>Product</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="/promotion" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="ion-ios-pricetags-outline"></i>
                 <p>Promotion</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="/supplier" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="ion ion-ios-people-outline"></i>
                 <p>Supplier</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/layout/fixed-footer.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Purchase</p>
               </a>
             </li>
           </ul>
         </li>
         <a href="/order" class="nav-link">
-          <i class="nav-icon fas fa-tachometer-alt"></i>
+          <i class="ion ion-ios-cart-outline"></i>
           <p>
             Orders
           </p>
         </a>
         <a href="/order/delivery" class="nav-link">
-          <i class="nav-icon fas fa-tachometer-alt"></i>
+          <i class="ion ion-android-bicycle"></i>
           <p>
-            delivery
+            Delivery
           </p>
         </a>
         <a href="/product/restock" class="nav-link">
-          <i class="nav-icon fas fa-tachometer-alt"></i>
+          <i class="ion ion-alert"></i>
           <p>
             Restock Products
           </p>

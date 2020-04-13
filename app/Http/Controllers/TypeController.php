@@ -12,6 +12,7 @@ class TypeController extends Controller
 
     public function __construct(Request $request, TypeInterface $typeInterface)
     {
+        $this->middleware('auth');
         $this->typeInterface = $typeInterface;
     }
 

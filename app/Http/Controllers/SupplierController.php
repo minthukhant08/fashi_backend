@@ -12,6 +12,7 @@ class SupplierController extends Controller
 
     public function __construct(Request $request, SupplierInterface $supplierInterface)
     {
+        $this->middleware('auth');
         $this->supplierInterface = $supplierInterface;
     }
 
