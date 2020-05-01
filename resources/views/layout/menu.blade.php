@@ -46,10 +46,9 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar elevation-4 sidebar-dark-warning">
   <!-- Brand Logo -->
-  <a href="index3.html" class="brand-link">
-    <img src="{{url('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-         style="opacity: .8">
-    <span class="brand-text font-weight-light">Online Shopping</span>
+  <a class="brand-link">
+    <img src="{{url('img/logo.png')}}" alt="AdminLTE Logo"
+         style="opacity: .8; width:170px; height: 50px; padding-left:10px;">
   </a>
 
   <!-- Sidebar -->
@@ -134,7 +133,19 @@
             Restock Products
           </p>
         </a>
+        <a href="{{ route('logout') }}"
+           onclick="event.preventDefault();
+                         document.getElementById('logout-form').submit();" class="nav-link">
+          <i class="ion ion-log-out"></i>
+          <p>
+            Logout
+          </p>
+        </a>
       </ul>
+
+      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+          @csrf
+      </form>
     </nav>
     <!-- /.sidebar-menu -->
   </div>
